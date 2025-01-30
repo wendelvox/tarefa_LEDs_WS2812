@@ -117,7 +117,7 @@ void display_number(int number, PIO pio, uint sm) {
             
             // Se o LED da matriz estiver "aceso", aplica a cor com brilho
             if (pattern[index]) {
-                color = (25 << 24) | (25 << 16) | 0; // Forma a cor no formato RGB  (G<<24)|(R<<16)|(B<<8);
+                color = (51 << 16) | 0 | 0; // Forma a cor no formato RGB  (G<<24)|(R<<16)|(B<<8);
             } else {
                 color = 0; // Apaga o LED (sem brilho)
             }
