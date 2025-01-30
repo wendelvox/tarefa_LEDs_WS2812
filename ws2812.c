@@ -33,82 +33,86 @@ const bool matriz_numeros[10][25] = {
         1, 0, 0, 0, 1,
         1, 0, 0, 0, 1,
         1, 0, 0, 0, 1,
-        1, 1, 1, 1, 1  // 0
-    },
+        1, 1, 1, 1, 1  
+    },// Número 0
     {
-        0, 0, 1, 0, 0,
-        0, 1, 1, 0, 0,
-        0, 0, 1, 0, 0,
-        0, 0, 1, 0, 0,
-        0, 1, 1, 1, 0  // 1
-    },
-   {
-        1, 1, 1, 1, 1,
-        1, 0, 0, 0, 0,
-        1, 1, 1, 1, 1,
-        0, 0, 0, 0, 1,
-        1, 1, 1, 1, 1  // 2
-    },
+        0, 1, 1, 1, 0,  
+        0, 0, 1, 0, 0,  
+        0, 0, 1, 0, 0,  
+        0, 1, 1, 0, 0,  
+        0, 0, 1, 0, 0
+    },   // Número 
+
+     {
+        1, 1, 1, 1, 1, 
+        1, 0, 0, 0, 0,  
+        1, 1, 1, 1, 1,  
+        0, 0, 0, 0, 1,  
+        1, 1, 1, 1, 1   
+    }, // Número 2 
+
     {
-        1, 1, 1, 1, 1,
-        0, 0, 0, 0, 1,
-        1, 1, 1, 1, 1,
-        0, 0, 0, 0, 1,
-        1, 1, 1, 1, 1  // 3
-    },
-    {
-        1, 0, 0, 0, 1,
-        1, 0, 0, 0, 1,
-        1, 1, 1, 1, 1,
-        1, 0, 0, 0, 0,
-        0, 0, 0, 0, 1  // 4
-    },
-   {
         1, 1, 1, 1, 1,
         0, 0, 0, 0, 1,
         1, 1, 1, 1, 1,
-        1, 0, 0, 0, 0,
-        1, 1, 1, 1, 1  // 5
-    },
-    {
-        1, 1, 1, 1, 1,
-        1, 0, 0, 0, 0,
-        1, 1, 1, 1, 1,
-        1, 0, 0, 0, 1,
-        1, 1, 1, 1, 1  // 6
-    },
-    {
-        0, 1, 1, 1, 1,
-        1, 0, 0, 0, 0,
-        0, 0, 0, 1, 0,
-        0, 0, 1, 0, 0,
-        0, 1, 0, 0, 0  // 7
-    },
-    {
-        1, 1, 1, 1, 1,
-        1, 0, 0, 0, 1,
-        1, 1, 1, 1, 1,
-        1, 0, 0, 0, 1,
-        1, 1, 1, 1, 1  // 8
-    },
-    {
-        1, 1, 1, 1, 1,
-        1, 0, 0, 0, 1,
-        1, 1, 1, 1, 1,
         0, 0, 0, 0, 1,
-        1, 1, 1, 1, 1  // 9
-    }
+        1, 1, 1, 1, 1  
+    }, // Número 3
+
+    {
+    1, 0, 0, 0, 0,  
+    0, 0, 0, 0, 1,  
+    1, 1, 1, 1, 1,  
+    1, 0, 0, 0, 1,  
+    1, 0, 0, 0, 1   
+},  // Número 4
+
+{
+    1, 1, 1, 1, 1,  
+    0, 0, 0, 0, 1,  
+    1, 1, 1, 1, 1,  
+    1, 0, 0, 0, 0,  
+    1, 1, 1, 1, 1   
+},  // Número 5
+
+{
+    1, 1, 1, 1, 1,  
+    1, 0, 0, 0, 1,  
+    1, 1, 1, 1, 1,  
+    1, 0, 0, 0, 0,  
+    1, 1, 1, 1, 1   
+},  // Número 6
+
+{
+    0, 0, 0, 0, 1, 
+    0, 1, 0, 0, 0,  
+    0, 0, 1, 0, 0,  
+    0, 0, 0, 1, 0,  
+    1, 1, 1, 1, 1
+},  // Número 7
+
+{
+    1, 1, 1, 1, 1,  
+    1, 0, 0, 0, 1, 
+    1, 1, 1, 1, 1, 
+    1, 0, 0, 0, 1,  
+    1, 1, 1, 1, 1   
+},  // Número 8
+
+{
+    1, 1, 1, 1, 1, 
+    0, 0, 0, 0, 1, 
+    1, 1, 1, 1, 1,  
+    1, 0, 0, 0, 1,  
+    1, 1, 1, 1, 1   
+}   // Número 9
 
 };
 
 
 void display_number(int number, PIO pio, uint sm) {
     printf("Exibindo número %d\n", number);  // Depuração
-    const bool *pattern = matriz_numeros[number];
-    
-  
-
-    // Vamos fazer o ajuste de brilho
+    const bool *pattern = matriz_numeros[number];      
     uint32_t color = 0; // Inicializa a variável para armazenar a cor
 
     for (int row = 0; row < 5; row++) {
@@ -117,7 +121,7 @@ void display_number(int number, PIO pio, uint sm) {
             
             // Se o LED da matriz estiver "aceso", aplica a cor com brilho
             if (pattern[index]) {
-                color = (51 << 16) | 0 | 0; // Forma a cor no formato RGB  (G<<24)|(R<<16)|(B<<8);
+                color = (51 << 24) | 0 | 0 ; // Forma a cor no formato RGB  (G<<24)|(R<<16)|(B<<8);
             } else {
                 color = 0; // Apaga o LED (sem brilho)
             }
@@ -138,19 +142,15 @@ void blink_red_led() {
     sleep_ms(100);              // Mantém apagado por 100ms
 }
 
-// Função de interrupção para o botão A (incrementar número)
-void button_a_irq_handler() {
+// Função de interrupção 
+void button_irq_handler(uint gpio, uint32_t events) {
     uint64_t current_time = time_us_32();
-    if (current_time - last_button_a_time > DEBOUNCE_DELAY) {
+
+    if (gpio == BUTTON_A_PIN && current_time - last_button_a_time > DEBOUNCE_DELAY) {
         button_a_pressed = true;
         last_button_a_time = current_time;
-    }
-}
-
-// Função de interrupção para o botão B (decrementar número)
-void button_b_irq_handler() {
-    uint64_t current_time = time_us_32();
-    if (current_time - last_button_b_time > DEBOUNCE_DELAY) {
+    } 
+    else if (gpio == BUTTON_B_PIN && current_time - last_button_b_time > DEBOUNCE_DELAY) {
         button_b_pressed = true;
         last_button_b_time = current_time;
     }
@@ -170,12 +170,13 @@ int main() {
     gpio_init(BUTTON_A_PIN);
     gpio_set_dir(BUTTON_A_PIN, GPIO_IN);
     gpio_pull_up(BUTTON_A_PIN);
-    gpio_set_irq_enabled_with_callback(BUTTON_A_PIN, GPIO_IRQ_EDGE_FALL, true, button_a_irq_handler);
+    gpio_set_irq_enabled_with_callback(BUTTON_A_PIN, GPIO_IRQ_EDGE_FALL, true, button_irq_handler);
 
     gpio_init(BUTTON_B_PIN);
     gpio_set_dir(BUTTON_B_PIN, GPIO_IN);
     gpio_pull_up(BUTTON_B_PIN);
-    gpio_set_irq_enabled_with_callback(BUTTON_B_PIN, GPIO_IRQ_EDGE_FALL, true, button_b_irq_handler);
+    gpio_set_irq_enabled_with_callback(BUTTON_B_PIN, GPIO_IRQ_EDGE_FALL, true, button_irq_handler);
+
 
     // Inicializa o PIO para controle do WS2812
     PIO pio = pio0;
