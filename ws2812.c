@@ -19,6 +19,8 @@ uint64_t last_button_a_time = 0;
 uint64_t last_button_b_time = 0;
 const uint64_t DEBOUNCE_DELAY = 200 * 1000; // 200ms debounce
 
+
+
 // Mapeamento dos padrões de LEDs para os números de 0 a 9 (em formato 5x5)
 const bool matriz_numeros[10][25] = {
     {
@@ -30,37 +32,37 @@ const bool matriz_numeros[10][25] = {
     },
     {
         0, 0, 1, 0, 0,
-        0, 1, 0, 0, 0,
-        0, 0, 0, 0, 0,
-        0, 0, 0, 0, 0,
+        0, 1, 1, 0, 0,
+        0, 0, 1, 0, 0,
+        0, 0, 1, 0, 0,
         0, 1, 1, 1, 0  // 1
     },
-    {
+   {
         1, 1, 1, 1, 1,
-        0, 0, 0, 1, 1,
-        0, 0, 1, 0, 0,
-        0, 1, 0, 0, 0,
+        1, 0, 0, 0, 0,
+        1, 1, 1, 1, 1,
+        0, 0, 0, 0, 1,
         1, 1, 1, 1, 1  // 2
     },
     {
         1, 1, 1, 1, 1,
-        0, 0, 0, 1, 1,
-        0, 0, 1, 1, 0,
+        0, 0, 0, 0, 1,
+        1, 1, 1, 1, 1,
         0, 0, 0, 0, 1,
         1, 1, 1, 1, 1  // 3
     },
     {
         1, 0, 0, 0, 1,
-        1, 0, 1, 0, 1,
-        1, 1, 0, 0, 1,
-        0, 0, 0, 0, 1,
-        0, 0, 0, 0, 1  // 4
-    },
-    {
+        1, 0, 0, 0, 1,
         1, 1, 1, 1, 1,
         1, 0, 0, 0, 0,
+        0, 0, 0, 0, 1  // 4
+    },
+   {
         1, 1, 1, 1, 1,
-        0, 0, 0, 0, 0,
+        0, 0, 0, 0, 1,
+        1, 1, 1, 1, 1,
+        1, 0, 0, 0, 0,
         1, 1, 1, 1, 1  // 5
     },
     {
@@ -71,11 +73,11 @@ const bool matriz_numeros[10][25] = {
         1, 1, 1, 1, 1  // 6
     },
     {
-        1, 1, 1, 1, 1,
+        0, 1, 1, 1, 1,
+        1, 0, 0, 0, 0,
         0, 0, 0, 1, 0,
-        0, 0, 0, 1, 0,
-        0, 0, 0, 1, 0,
-        0, 0, 0, 1, 0  // 7
+        0, 0, 1, 0, 0,
+        0, 1, 0, 0, 0  // 7
     },
     {
         1, 1, 1, 1, 1,
@@ -94,15 +96,15 @@ const bool matriz_numeros[10][25] = {
 
 };
 
-// Função para exibir o número na matriz 5x5 utilizando o PIO
+
 void display_number(int number, PIO pio, uint sm) {
-    printf("Exibindo o número: %d\n", number);  // Isso vai imprimir o número na tela
+  printf("Exibindo número %d\n", number);  // Depuração
     const bool *pattern = matriz_numeros[number];
-  
     for (int row = 0; row < 5; row++) {
         for (int col = 0; col < 5; col++) {
             int index = row * 5 + col;
-            pio_sm_put_blocking(pio, sm, pattern[index]);
+            uint32_t color = pattern[index] ? 0xFF0000 : 0x000000; // vermelho  se 1, apagado se 0         
+            pio_sm_put_blocking(pio, sm, color);
         }
     }
 }
