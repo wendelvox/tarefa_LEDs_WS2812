@@ -4,6 +4,7 @@
 #include "hardware/pio.h"
 #include "ws2812.pio.h"  // Inclui o arquivo gerado pelo CMake para o PIO
 
+
 #define LED_PIN_RED    13
 #define LED_PIN_GREEN  11
 #define LED_PIN_BLUE   12
@@ -19,7 +20,11 @@ uint64_t last_button_a_time = 0;
 uint64_t last_button_b_time = 0;
 const uint64_t DEBOUNCE_DELAY = 200 * 1000; // 200ms debounce
 
-
+// Variáveis globais para controle do LED e cor
+uint8_t selected_led = 0; // Índice do LED a ser controlado (0 a 24)
+uint8_t selected_r = 0;   // Intensidade do vermelho (0 a 255)
+uint8_t selected_g = 0;   // Intensidade do verde (0 a 255)
+uint8_t selected_b = 80;   // Intensidade do azul (0 a 255)
 
 // Mapeamento dos padrões de LEDs para os números de 0 a 9 (em formato 5x5)
 const bool matriz_numeros[10][25] = {
@@ -98,16 +103,32 @@ const bool matriz_numeros[10][25] = {
 
 
 void display_number(int number, PIO pio, uint sm) {
-  printf("Exibindo número %d\n", number);  // Depuração
+    printf("Exibindo número %d\n", number);  // Depuração
     const bool *pattern = matriz_numeros[number];
+    
+  
+
+    // Vamos fazer o ajuste de brilho
+    uint32_t color = 0; // Inicializa a variável para armazenar a cor
+
     for (int row = 0; row < 5; row++) {
         for (int col = 0; col < 5; col++) {
             int index = row * 5 + col;
-            uint32_t color = pattern[index] ? 0xFF0000 : 0x000000; // vermelho  se 1, apagado se 0         
+            
+            // Se o LED da matriz estiver "aceso", aplica a cor com brilho
+            if (pattern[index]) {
+                color = (51 << 16) | 0 | 0; // Forma a cor no formato RGB (R << 16 | G << 8 | B)
+            } else {
+                color = 0; // Apaga o LED (sem brilho)
+            }
+
+            // Envia a cor para o PIO para o controle do LED
             pio_sm_put_blocking(pio, sm, color);
         }
     }
 }
+
+
 
 // Função para piscar o LED vermelho 5 vezes por segundo
 void blink_red_led() {
