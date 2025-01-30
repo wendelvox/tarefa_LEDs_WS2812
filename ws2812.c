@@ -117,7 +117,7 @@ void display_number(int number, PIO pio, uint sm) {
             
             // Se o LED da matriz estiver "aceso", aplica a cor com brilho
             if (pattern[index]) {
-                color = (51 << 16) | 0 | 0; // Forma a cor no formato RGB (R << 16 | G << 8 | B)
+                color = (25 << 24) | (25 << 16) | 0; // Forma a cor no formato RGB  (G<<24)|(R<<16)|(B<<8);
             } else {
                 color = 0; // Apaga o LED (sem brilho)
             }
@@ -202,7 +202,7 @@ int main() {
             display_number(current_number, pio, sm);
         }
 
-        sleep_ms(10); // Aguarda um pouco para a estabilidade do loop
+        sleep_ms(10); // Aguarda um pouco para a estabilidade
     }
 
     return 0;
