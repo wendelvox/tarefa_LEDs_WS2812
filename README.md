@@ -52,3 +52,6 @@ Este projeto implementa um sistema de controle para uma matriz de LEDs 5x5 WS281
 **Wendel S. Souza**  
 Desenvolvedor de sistemas embarcados e software para Raspberry Pi Pico.
 
+![image](https://github.com/user-attachments/assets/c344de92-076f-42ef-b22c-5dfec3c4d0f8)
+
+
