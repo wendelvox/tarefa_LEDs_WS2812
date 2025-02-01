@@ -1,5 +1,6 @@
 # Projeto: Controle de Matriz de LEDs WS2812 com Raspberry Pi Pico
-
+### Autor
+**Wendel S. Souza**  
 ## Descrição
 Este projeto implementa um sistema de controle para uma matriz de LEDs 5x5 WS2812 utilizando a Raspberry Pi Pico. A matriz exibe números de 0 a 9 e é controlada por dois botões, permitindo incrementar ou decrementar o número exibido. Além disso, um LED RGB pode ser controlado, e um LED vermelho pisca continuamente a uma taxa de 5 vezes por segundo.
 
@@ -48,10 +49,7 @@ Este projeto implementa um sistema de controle para uma matriz de LEDs 5x5 WS281
 - Pressione o **botão B** para decrementar o número exibido na matriz.
 - O LED vermelho pisca automaticamente a uma taxa de 5 Hz.
 
-## Autor
-**Wendel S. Souza**  
-Desenvolvedor de sistemas embarcados e software para Raspberry Pi Pico.
-
+## Simulação Wokwi
 ![image](https://github.com/user-attachments/assets/c344de92-076f-42ef-b22c-5dfec3c4d0f8)
 
 
