@@ -55,3 +55,6 @@ Desenvolvedor de sistemas embarcados e software para Raspberry Pi Pico.
 ![image](https://github.com/user-attachments/assets/c344de92-076f-42ef-b22c-5dfec3c4d0f8)
 
 
+## Video
+https://youtu.be/dmD81KwU-cU
+
